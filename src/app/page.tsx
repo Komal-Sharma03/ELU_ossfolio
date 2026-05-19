@@ -35,6 +35,7 @@ export default function HomePage() {
       <Footer />
 
       <AuthModal
+        key={authMode}
         open={authOpen}
         onClose={() => setAuthOpen(false)}
         defaultMode={authMode}

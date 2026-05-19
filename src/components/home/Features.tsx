@@ -93,7 +93,7 @@ export function Features() {
               lineHeight: 1.15,
             }}
           >
-            Everything GitHub doesn't show
+            Everything GitHub doesn&apos;t show
           </h2>
           <p
             style={{

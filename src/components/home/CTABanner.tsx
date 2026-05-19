@@ -46,7 +46,7 @@ export function CTABanner({ onGetStarted }: CTABannerProps) {
             color: "#707070",
           }}
         >
-          It's free, takes 30 seconds, and your profile is live at
+          It&apos;s free, takes 30 seconds, and your profile is live at
           ossfolio.me/username the moment you sign in.
         </p>
         <div

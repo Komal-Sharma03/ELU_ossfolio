@@ -18,10 +18,6 @@ export function AuthModal({ open, onClose, defaultMode = "signin" }: AuthModalPr
   const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setMode(defaultMode);
-  }, [defaultMode, open]);
-
-  useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
     } else {
