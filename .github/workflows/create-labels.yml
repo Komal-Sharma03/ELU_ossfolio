@@ -1,0 +1,45 @@
+name: Create Labels
+
+on:
+  workflow_dispatch:
+
+jobs:
+  labels:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+      - name: Create all labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = [
+              { name: "elusoc",        color: "7B2FBE", description: "ELUSOC project submission" },
+              { name: "beginner",      color: "2da44e", description: "Good for newcomers to open source" },
+              { name: "intermediate",  color: "fb8f44", description: "Some prior experience required" },
+              { name: "advanced",      color: "d93f0b", description: "Requires deep understanding of the codebase" },
+              { name: "frontend",      color: "0075ca", description: "Related to UI / Next.js / Tailwind" },
+              { name: "backend",       color: "e4e669", description: "Related to Supabase / API / database" },
+              { name: "documentation", color: "0075ca", description: "Improvements or additions to docs" },
+              { name: "AI",            color: "f9d0c4", description: "AI features — contributor summary, scoring" },
+              { name: "UI",            color: "bfd4f2", description: "Visual / design changes" },
+              { name: "help wanted",   color: "008672", description: "Open for anyone to pick up" },
+            ];
+
+            for (const label of labels) {
+              try {
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  ...label,
+                });
+                console.log(`✓ Created: ${label.name}`);
+              } catch (e) {
+                if (e.status === 422) {
+                  console.log(`~ Already exists: ${label.name}`);
+                } else {
+                  console.error(`✗ Failed: ${label.name}`, e.message);
+                }
+              }
+            }
