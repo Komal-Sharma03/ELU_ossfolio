@@ -4,11 +4,15 @@
 
 **Your open-source identity, beyond GitHub.**
 
+[![EluSoC Season 1 2026](https://img.shields.io/badge/EluSoC-Season%201%202026-6366f1?style=flat-square)](https://github.com/PRODHOSH/ossfolio)
 [![CI](https://github.com/PRODHOSH/ossfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/PRODHOSH/ossfolio/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/PRODHOSH/ossfolio/actions/workflows/codeql.yml/badge.svg)](https://github.com/PRODHOSH/ossfolio/actions/workflows/codeql.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![All Contributors](https://img.shields.io/github/all-contributors/PRODHOSH/ossfolio?color=ee8449)](https://github.com/PRODHOSH/ossfolio#contributors)
+
+**OSSfolio is participating in EluSoC Season 1 2026.**
+If you are here through EluSoC, welcome! Read through this README and then check out [CONTRIBUTING.md](CONTRIBUTING.md) to get started.
 
 </div>
 
@@ -28,7 +32,7 @@ No manual input. Just sign in with GitHub and your profile is ready.
 
 GitHub profiles are built around repositories — stars, forks, and commit graphs tell only part of the story.
 
-If you've spent months reviewing PRs, triaging issues, contributing to other people's projects, or participating in GSoC/GSSoC — none of that shows up clearly on your GitHub profile. Recruiters miss it. Maintainers miss it. You can't share it.
+If you have spent months reviewing PRs, triaging issues, contributing to other people's projects, or participating in GSoC/GSSoC — none of that shows up clearly on your GitHub profile. Recruiters miss it. Maintainers miss it. You cannot share it.
 
 OSSfolio is built to fix that — for students applying to GSoC, for developers sharing their work with recruiters, and for anyone who wants their contributions to actually be seen.
 
@@ -38,9 +42,9 @@ OSSfolio is built to fix that — for students applying to GSoC, for developers 
 
 - **Shareable profile** at `ossfolio.me/username`
 - **Contribution stats** — merged PRs, issues opened, commits, reviews
-- **Heatmap & streak** — visualise your activity across the year
+- **Heatmap and streak** — visualise your activity across the year
 - **Tech stack** — auto-detected from your repos, no tagging needed
-- **Organizations** — every org you've contributed to
+- **Organizations** — every org you have contributed to
 - **GSoC / GSSoC badges** — show your program participation
 - **Contributor score** — a single number summarising your impact
 - **Leaderboard** — see how you rank against other contributors
@@ -96,13 +100,13 @@ cp .env.example .env.local
 
 **Finishing up:**
 
-Once Supabase is set up, copy your project URL and anon key into `.env.local` (you'll find them in your Supabase dashboard under **Project Settings → API**), then:
+Once Supabase is set up, copy your project URL and anon key into `.env.local` (you will find them in your Supabase dashboard under **Project Settings → API**), then:
 
 ```bash
 npm run dev
 ```
 
-Open `http://localhost:3000` and you're in.
+Open `http://localhost:3000` and you are in.
 
 For a detailed walkthrough — environment variables, GitHub OAuth setup, database change guidelines — see [CONTRIBUTING.md](CONTRIBUTING.md).
 
@@ -110,20 +114,54 @@ For a detailed walkthrough — environment variables, GitHub OAuth setup, databa
 
 ## Want to contribute?
 
-OSSfolio is built by contributors, for contributors. That's kind of the whole point.
+OSSfolio is built by contributors, for contributors. That is kind of the whole point.
+
+**Before you start:**
+
+1. Read [CONTRIBUTING.md](CONTRIBUTING.md) — it covers setup, rules, and what we expect
+2. Read [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) — short and worth it
 
 **How to get started:**
-1. Browse [open issues](https://github.com/PRODHOSH/ossfolio/issues) — filter by `good first issue` if it's your first time
-2. Comment on the issue explaining your approach — in your own words, not AI-generated
-3. Wait to be assigned, then start working and open a PR
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) before you start. They're short, worth it.
+1. Browse [open issues](https://github.com/PRODHOSH/ossfolio/issues) — filter by `good first issue` if it is your first time
+2. Comment on the issue with your approach, written in your own words
+3. Wait to be assigned before you start working
+4. Open your PR once assigned, fill out the template fully
+
+**A few things to keep in mind:**
+
+- Do not submit a PR without being assigned to the issue first
+- Once you submit a PR, it will be reviewed within 12 hours. Please be patient and avoid pinging repeatedly before that time
+- If you used AI to help write code, mention it in the PR and make sure you actually understand everything you changed
+- If you have doubts, you can reach out on [LinkedIn](https://www.linkedin.com/in/prodhoshvs/) — send one message and give some time for a response
+
+---
+
+## Project Structure
+
+```
+ossfolio/
+├── src/
+│   ├── app/              # Next.js app router pages and API routes
+│   ├── components/       # Reusable UI components
+│   │   ├── ui/           # Base shadcn/ui components
+│   │   ├── home/         # Landing page sections
+│   │   ├── layout/       # Header, footer, navigation
+│   │   └── profile/      # Profile page components
+│   ├── lib/              # Utilities, helpers, API clients
+│   └── types/            # TypeScript type definitions
+├── supabase/
+│   ├── migrations/       # Database migration files (one per schema change)
+│   ├── schema.sql        # Full schema for dashboard setup
+│   └── seed.sql          # Sample data for local development
+└── public/               # Static assets
+```
 
 ---
 
 ## Contributors
 
-Everyone who's helped build OSSfolio — code, design, docs, ideas, all of it.
+Everyone who has helped build OSSfolio — code, design, docs, ideas, all of it.
 
 <!-- ALL-CONTRIBUTORS-LIST:START -->
 <!-- prettier-ignore-start -->

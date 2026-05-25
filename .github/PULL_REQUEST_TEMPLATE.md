@@ -1,6 +1,6 @@
 ## Summary
 
-<!-- Describe what this PR does and why. Be concise. -->
+<!-- Describe what this PR does and why. Write this in your own words. Do not paste an AI-generated summary here. -->
 
 ## Related Issue
 
@@ -16,8 +16,15 @@ Closes #<!-- issue number -->
 
 ## Changes Made
 
-<!-- Bullet points of what changed -->
+<!-- Bullet points of what changed and why you made each change -->
 - 
+
+## AI Usage
+
+- [ ] I did not use AI for any part of the code in this PR
+- [ ] I used AI for coding (specify which tool below) and I fully understand every change I made, including which functions I changed, why I changed them, and what side effects they could create
+
+<!-- If you used AI, write the tool name here, e.g. "Used Claude Code for coding" -->
 
 ## Screenshots (if UI change)
 
@@ -25,9 +32,11 @@ Closes #<!-- issue number -->
 
 ## Checklist
 
+- [ ] I was assigned to the issue before opening this PR
 - [ ] My branch is up to date with `main`
-- [ ] Code follows the project style guide
-- [ ] I have tested my changes locally
-- [ ] I have added/updated tests where applicable
-- [ ] I have updated relevant documentation
+- [ ] Code works locally and I have tested it
+- [ ] No `console.log` left in `src/`
+- [ ] If schema changed — both `schema.sql` and a new migration file are included
+- [ ] Docs updated if needed
 - [ ] PR title follows Conventional Commits format (`feat:`, `fix:`, `docs:`, etc.)
+- [ ] This PR description is written in my own words

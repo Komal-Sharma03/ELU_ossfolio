@@ -7,6 +7,7 @@ Thank you for taking the time to contribute. OSSfolio is built entirely by contr
 ## Table of Contents
 
 - [Code of Conduct](#code-of-conduct)
+- [AI Policy](#ai-policy)
 - [How Can I Contribute?](#how-can-i-contribute)
 - [Local Setup](#local-setup)
   - [1. Fork and clone](#1-fork-and-clone)
@@ -27,6 +28,27 @@ Thank you for taking the time to contribute. OSSfolio is built entirely by contr
 ## Code of Conduct
 
 This project follows our [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you agree to uphold it.
+
+---
+
+## AI Policy
+
+We are not saying do not use AI. Use it, but use it responsibly.
+
+If you used AI to help write or fix code, that is completely fine. But you need to follow these rules:
+
+**Mention it clearly.** In your PR description, add a line like: "Used Claude Code for coding" or whichever tool you used. This is not optional.
+
+**Actually understand what you changed.** Before submitting, you should be able to answer these three questions yourself:
+- Which function or module did you change?
+- Why did you change it?
+- What side effects could that change create?
+
+If you cannot answer those, do not submit yet. Go back, understand the code, then submit.
+
+**Write your own PR and issue descriptions.** Your PR description and issue messages need to be in your own words. Do not paste AI-generated summaries as your contribution message. These should reflect your actual understanding of the change, not a model's summary of it.
+
+**No spam.** AI-generated issues, copy-paste PRs, or vague "fix bug" contributions with no real understanding behind them will be closed without review. Quality matters more than speed here.
 
 ---
 
@@ -199,29 +221,41 @@ Examples:
 
 ## Pull Request Process
 
+**Please do not submit a PR without first being assigned to the issue.** Comment on the issue with your approach, wait to get assigned, then start working. Once you are assigned, feel free to prepare your PR.
+
+Once you submit a PR, it will be reviewed within 12 hours. Please be patient and avoid pinging or sending repeated messages asking for a review before that time. You can send one follow-up message after 12 hours, but keep it to that.
+
+### Steps
+
 1. Make sure your branch is up to date with `main`
 2. Fill out the PR template completely — incomplete PRs may be closed
 3. Link the issue using `Closes #<issue-number>` in the PR description
-4. One logical change per PR — don't bundle unrelated fixes
-5. All PRs need at least one review before merge
-6. A maintainer will merge once approved
+4. Write your PR description in your own words — describe what you changed and why, not just what the diff shows
+5. If you used AI for any part of the code, mention it clearly in the description
+6. One logical change per PR — don't bundle unrelated fixes
+7. All PRs need at least one review before merge
+8. A maintainer will merge once approved
 
 ### PR Checklist
 
+- [ ] I was assigned to the issue before opening this PR
 - [ ] Code works locally
 - [ ] No `console.log` left in `src/`
 - [ ] If schema changed — both `schema.sql` and a new migration file are included
 - [ ] Docs updated if needed
 - [ ] PR title follows Conventional Commits format
+- [ ] PR description is written in my own words
+- [ ] If I used AI for coding, I mentioned it clearly and I understand every change I made
 
 ---
 
 ## Issue Guidelines
 
-- Search before opening — check if the issue already exists
-- Use the correct template (Bug Report / Feature Request / Good First Issue / Docs)
-- Be specific — vague issues are hard to act on
-- If you want to fix an issue you opened, say so in the issue itself
+- **Check for duplicates first.** Before opening an issue, search the existing open issues to see if someone already reported it. Duplicate issues will be closed.
+- **Use the correct template.** Pick Bug Report, Feature Request, Good First Issue, or Docs depending on what you are filing.
+- **Be specific.** Vague issues are hard to act on and will be asked for more detail or closed.
+- **No spam.** Do not open issues just to get assigned to something without a clear problem statement.
+- If you want to work on an issue you opened yourself, say so in the issue and wait to be assigned like everyone else.
 
 ---
 
@@ -238,4 +272,4 @@ Not sure where to start? Open a [Discussion](../../discussions) and ask — we'l
 
 ## Questions?
 
-Open a [Discussion](../../discussions) rather than an issue for general questions. Issues are for bugs and feature requests — discussions are for everything else.
+If you have any doubts, feel free to reach out. Open a [Discussion](../../discussions) for general questions, or ping once on [LinkedIn](https://www.linkedin.com/in/prodhoshvs/). Please keep it to one message and give some time for a response before following up.
