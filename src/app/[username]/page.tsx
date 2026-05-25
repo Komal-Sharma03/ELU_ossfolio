@@ -1,11 +1,14 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { supabase } from "@/lib/supabase";
 
 interface ProfilePageProps {
   params: Promise<{ username: string }>;
 }
 
-export async function generateMetadata({ params }: ProfilePageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: ProfilePageProps): Promise<Metadata> {
   const { username } = await params;
   return {
     title: `${username} — OSSfolio`,
@@ -17,7 +20,13 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const { username } = await params;
 
   // TODO: fetch contributor data from Supabase / GitHub API
-  if (!username) notFound();
+  const { data: user } = await supabase
+    .from("profiles")
+    .select("username")
+    .eq("username", username)
+    .single();
+
+  if (!user) notFound();
 
   return (
     <main className="min-h-screen bg-background">
