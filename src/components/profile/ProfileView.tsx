@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import type { ContributorStats, Org, TechEntry, HeatmapWeek } from "@/types";
 
 interface GitHubUser {
   login: string;
@@ -47,7 +48,23 @@ const LANG_COLORS: Record<string, string> = {
   PHP: "#4F5D95",
 };
 
-export function ProfileView({ user, repos }: { user: GitHubUser; repos: GitHubRepo[] }) {
+interface ProfileExtras {
+  stats: ContributorStats;
+  techStack: TechEntry[];
+  orgs: Org[];
+  heatmap: HeatmapWeek[];
+  score: number;
+}
+
+export function ProfileView({
+  user,
+  repos,
+  stats,
+  techStack,
+  orgs,
+  heatmap,
+  score,
+}: { user: GitHubUser; repos: GitHubRepo[] } & ProfileExtras) {
   const displayName = user.name || user.login;
   const website = user.blog
     ? user.blog.startsWith("http")
@@ -137,10 +154,10 @@ export function ProfileView({ user, repos }: { user: GitHubUser; repos: GitHubRe
 
           <div style={{ display: "flex", gap: "20px", marginTop: "14px" }}>
             <span style={{ fontSize: "13px", color: "#707070" }}>
-              <strong style={{ color: "#171717", fontWeight: 600 }}>{user.followers.toLocaleString()}</strong> followers
+              <strong style={{ color: "#171717", fontWeight: 600 }}>{user.followers.toLocaleString("en-US")}</strong> followers
             </span>
             <span style={{ fontSize: "13px", color: "#707070" }}>
-              <strong style={{ color: "#171717", fontWeight: 600 }}>{user.following.toLocaleString()}</strong> following
+              <strong style={{ color: "#171717", fontWeight: 600 }}>{user.following.toLocaleString("en-US")}</strong> following
             </span>
             <span style={{ fontSize: "13px", color: "#707070" }}>
               <strong style={{ color: "#171717", fontWeight: 600 }}>{user.public_repos}</strong> repos
@@ -199,14 +216,14 @@ export function ProfileView({ user, repos }: { user: GitHubUser; repos: GitHubRe
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                     </svg>
-                    {repo.stargazers_count.toLocaleString()}
+                    {repo.stargazers_count.toLocaleString("en-US")}
                   </span>
                   <span style={{ display: "flex", alignItems: "center", gap: "4px", fontSize: "12px", color: "#707070" }}>
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <circle cx="12" cy="18" r="3" /><circle cx="6" cy="6" r="3" /><circle cx="18" cy="6" r="3" />
                       <path d="M18 9a9 9 0 0 1-9 9M6 9a9 9 0 0 0 9 9" />
                     </svg>
-                    {repo.forks_count.toLocaleString()}
+                    {repo.forks_count.toLocaleString("en-US")}
                   </span>
                 </div>
               </a>
@@ -228,6 +245,131 @@ export function ProfileView({ user, repos }: { user: GitHubUser; repos: GitHubRe
               </svg>
             </a>
           </div>
+        </div>
+      )}
+
+      {/* Contribution stats */}
+      <div style={{ marginTop: "44px" }}>
+        <h2 style={{ fontSize: "16px", fontWeight: 600, color: "#171717", margin: "0 0 16px 0", letterSpacing: "-0.2px" }}>
+          Contribution stats
+        </h2>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: "12px" }}>
+          {[
+            { label: "Commits", value: stats.totalCommits },
+            { label: "Pull Requests", value: stats.totalPRs },
+            { label: "Issues", value: stats.totalIssues },
+            { label: "Contributor score", value: score },
+          ].map((item) => (
+            <div
+              key={item.label}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "20px 12px",
+                border: "1px solid #ededed",
+                borderRadius: "12px",
+                backgroundColor: "#ffffff",
+                textAlign: "center",
+              }}
+            >
+              <span style={{ fontSize: "24px", fontWeight: 700, color: "#171717", letterSpacing: "-0.5px" }}>
+                {item.value.toLocaleString("en-US")}
+              </span>
+              <span style={{ fontSize: "12px", color: "#707070", marginTop: "4px" }}>{item.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Tech stack */}
+      {techStack.length > 0 && (
+        <div style={{ marginTop: "44px" }}>
+          <h2 style={{ fontSize: "16px", fontWeight: 600, color: "#171717", margin: "0 0 16px 0", letterSpacing: "-0.2px" }}>
+            Tech stack
+          </h2>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+            {techStack.map(({ language, repoCount }) => (
+              <span
+                key={language}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  padding: "6px 12px",
+                  border: "1px solid #ededed",
+                  borderRadius: "9999px",
+                  fontSize: "13px",
+                  color: "#171717",
+                  backgroundColor: "#fafafa",
+                }}
+              >
+                {language}
+                <span style={{ color: "#9a9a9a", fontSize: "12px" }}>×{repoCount}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Organizations */}
+      {orgs.length > 0 && (
+        <div style={{ marginTop: "44px" }}>
+          <h2 style={{ fontSize: "16px", fontWeight: 600, color: "#171717", margin: "0 0 16px 0", letterSpacing: "-0.2px" }}>
+            Organizations
+          </h2>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "12px" }}>
+            {orgs.map((org) => (
+              <a
+                key={org.login}
+                href={org.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={org.name ?? org.login}
+                style={{ display: "inline-flex", borderRadius: "8px", overflow: "hidden", border: "1px solid #ededed", transition: "border-color 0.15s" }}
+                onMouseEnter={(e) => (e.currentTarget.style.borderColor = "#3ecf8e")}
+                onMouseLeave={(e) => (e.currentTarget.style.borderColor = "#ededed")}
+              >
+                <Image src={org.avatarUrl} alt={org.login} width={36} height={36} style={{ display: "block" }} />
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Contribution heatmap */}
+      {heatmap.length > 0 && (
+        <div style={{ marginTop: "44px" }}>
+          <h2 style={{ fontSize: "16px", fontWeight: 600, color: "#171717", margin: "0 0 16px 0", letterSpacing: "-0.2px" }}>
+            Contribution activity
+          </h2>
+          <div
+            style={{
+              display: "flex",
+              gap: "3px",
+              overflowX: "auto",
+              padding: "16px",
+              border: "1px solid #ededed",
+              borderRadius: "12px",
+              backgroundColor: "#ffffff",
+            }}
+          >
+            {heatmap.map((week, wi) => (
+              <div key={wi} style={{ display: "flex", flexDirection: "column", gap: "3px" }}>
+                {week.days.map((day, di) => (
+                  <div
+                    key={di}
+                    title={`${day.count} contributions on ${day.date}`}
+                    style={{ width: "11px", height: "11px", borderRadius: "2px", backgroundColor: day.color, flexShrink: 0 }}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
+          <p style={{ fontSize: "12px", color: "#9a9a9a", margin: "10px 0 0 0" }}>
+            Activity graph is a representative placeholder &mdash; precise daily counts require GitHub&rsquo;s authenticated API.
+          </p>
         </div>
       )}
     </div>
