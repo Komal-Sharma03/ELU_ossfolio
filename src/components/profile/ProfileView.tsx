@@ -72,6 +72,9 @@ export function ProfileView({
       : `https://${user.blog}`
     : null;
 
+  // Total stars across the fetched repos (same basis calculateScore uses for the score).
+  const totalStars = repos.reduce((sum, r) => sum + (r.stargazers_count ?? 0), 0);
+
   return (
     <div style={{ maxWidth: "56rem", margin: "0 auto", padding: "48px 20px 80px" }}>
 
@@ -258,6 +261,7 @@ export function ProfileView({
             { label: "Commits", value: stats.totalCommits },
             { label: "Pull Requests", value: stats.totalPRs },
             { label: "Issues", value: stats.totalIssues },
+            { label: "Stars", value: totalStars },
             { label: "Contributor score", value: score },
           ].map((item) => (
             <div
