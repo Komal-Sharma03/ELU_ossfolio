@@ -197,7 +197,15 @@ Everyone who has helped build OSSfolio — code, design, docs, ideas, all of it.
  </picture>
 </a>
 
+---
+### My ELUSOC 2026 Admin Badges!
+
+<a href="https://edulinkup.dev/elusoc/profile/PRODHOSH">
+  <img src="https://edulinkup.dev/elusoc/images/ticket/overseer.png" width="60" alt="Overseer" />
+  <img src="https://edulinkup.dev/elusoc/images/ticket/warden.png" width="60" alt="Warden" />
+</a>
 
 ## License
 
 [MIT](LICENSE) — free to use, fork, and build on.
+
